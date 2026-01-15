@@ -92,17 +92,9 @@ export async function fetchReviews() {
       clean: true // Bersihkan output
     });
 
-    // Parse hasil scraping dari JSON string
-    let parsedReviews;
-    try {
-      parsedReviews = JSON.parse(reviews);
-    } catch (parseError) {
-      throw new Error(`Failed to parse reviews data: ${parseError.message}`);
-    }
-
     // Format ulasan untuk disimpan ke database
     return (
-      parsedReviews
+      reviews
         .filter(
           (review) =>
             review.review?.text?.trim()
